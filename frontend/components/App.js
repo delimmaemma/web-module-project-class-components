@@ -1,5 +1,5 @@
 import React from 'react'
-import Todo from './Todo'
+import TodoList from './TodoList'
 
 export default class App extends React.Component {
   constructor() {
@@ -25,16 +25,11 @@ export default class App extends React.Component {
     }
   }
   render() {
+    const {todos} = this.state //Needed to pass todos arg to children
     return (
       <div>
         <h1>Todos</h1>
-        <ul>
-          {
-            this.state.todos.map(todo => 
-              {return (<Todo key={todo.id} todo={todo} />)}
-            ) 
-          }
-        </ul>
+        <TodoList todos = {todos} />
         <form>
           <input/>
           <button>Add</button>
