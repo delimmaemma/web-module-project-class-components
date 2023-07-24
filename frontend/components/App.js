@@ -8,22 +8,35 @@ export default class App extends React.Component {
     this.state = {
       todos: [
         {
-          id: 1,
+          id: crypto.randomUUID(),
           text: 'Scoop the kitties',
           completed: false
         },
         {
-          id: 2,
+          id: crypto.randomUUID(),
           text: 'Take out the trash',
           completed: false
         },
         {
-          id: 3,
+          id: crypto.randomUUID(),
           text: 'Put up the dishes',
           completed: false
         }
       ]
     }
+  }
+
+  handleAdd = (task) => {
+      this.setState(prevState => ({
+        todos: [
+          ...prevState.todos,
+          {
+            id: crypto.randomUUID(),
+            text: task,
+            completed: false
+          }
+        ]
+      }))
   }
 
   handleClear = () => {
@@ -37,13 +50,28 @@ export default class App extends React.Component {
     })
   }
 
+  handleToggle = (id) => {
+    this.setState({
+      ...this.state,
+      todos: this.state.todos.map(todo => {
+        if (todo.id === id) {
+          return {
+            ...todo,
+            completed: !todo.completed
+          }
+        }
+        return todo;
+      })
+    })
+  }
+
   render() {
     const {todos} = this.state //Needed to pass todos arg to children
     return (
       <div>
         <h1>Todos</h1>
-        <TodoList todos = {todos} />
-        <Form />
+        <TodoList handleToggle = {this.handleToggle} todos = {todos} />
+        <Form handleAdd = {this.handleAdd}/>
         <button onClick={this.handleClear}>Clear</button>
       </div>
     )

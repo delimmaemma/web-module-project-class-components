@@ -7,8 +7,8 @@ export default class TodoList extends React.Component {
       <ul>
         {
           this.props.todos.map(todo => 
-            {return (<Todo key={todo.id} todo={todo} />)}
-          ) 
+            {return (<Todo handleToggle = {this.props.handleToggle} key={todo.id} todo={todo} />)}
+          ) //Use this.props.[name] to pass down props from parent to child to grandchild component
         }
       </ul>
     )
