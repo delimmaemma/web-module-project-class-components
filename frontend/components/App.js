@@ -25,6 +25,18 @@ export default class App extends React.Component {
       ]
     }
   }
+
+  handleClear = () => {
+    //Any time a modification is made, you need to call setState
+    this.setState({
+      ...this.state,
+      todos: this.state.todos.filter(todo => 
+        {
+          return(!todo.completed)
+        })
+    })
+  }
+
   render() {
     const {todos} = this.state //Needed to pass todos arg to children
     return (
@@ -32,7 +44,7 @@ export default class App extends React.Component {
         <h1>Todos</h1>
         <TodoList todos = {todos} />
         <Form />
-        <button>Clear</button>
+        <button onClick={this.handleClear}>Clear</button>
       </div>
     )
   }
