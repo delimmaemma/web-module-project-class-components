@@ -1,5 +1,6 @@
 import React from 'react'
 import TodoList from './TodoList'
+import Form from './Form'
 
 export default class App extends React.Component {
   constructor() {
@@ -30,10 +31,7 @@ export default class App extends React.Component {
       <div>
         <h1>Todos</h1>
         <TodoList todos = {todos} />
-        <form>
-          <input/>
-          <button>Add</button>
-        </form>
+        <Form />
         <button>Clear</button>
       </div>
     )
