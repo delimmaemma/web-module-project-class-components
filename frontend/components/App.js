@@ -1,4 +1,5 @@
 import React from 'react'
+import Todo from './Todo'
 
 export default class App extends React.Component {
   constructor() {
@@ -30,9 +31,7 @@ export default class App extends React.Component {
         <ul>
           {
             this.state.todos.map(todo => 
-              <li key={todo.id}>
-                {todo.text} {todo.completed && <span> - Completed!</span>}
-              </li>
+              {return (<Todo key={todo.id} todo={todo} />)}
             ) 
           }
         </ul>
